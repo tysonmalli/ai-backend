@@ -14,11 +14,14 @@ app.post("/generate-image", async (req, res) => {
     const response = await axios.post(
       "https://api.replicate.com/v1/predictions",
       {
-        version: "db21e45c3703cae770116b29a778de5d8f46a1f7711e1e77b892b8c6b512c29e",
+        version: "7702fd907cf82c9483f83e61403f77d085e020b063e7e496e90eef64dc92979bdc", // ✅ Updated version ID
         input: {
           prompt: prompt,
-          width: 512,
-          height: 512
+          width: 768,
+          height: 768,
+          refine: "expert_ensemble_refiner",
+          apply_watermark: false,
+          num_inference_steps: 25
         }
       },
       {
@@ -56,5 +59,5 @@ app.post("/generate-image", async (req, res) => {
 });
 
 app.listen(5000, () => {
-  console.log("Backend server started!");
+  console.log("✅ Backend server started on port 5000!");
 });
